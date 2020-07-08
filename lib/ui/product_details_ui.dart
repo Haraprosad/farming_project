@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 class ProductDetailsUI extends StatefulWidget {
   @override
@@ -14,6 +15,10 @@ class ProductDetailsUI extends StatefulWidget {
 }
 
 class _ProductDetailsUIState extends State<ProductDetailsUI> {
+  //get current address process*****************
+  Position _currentPosition;
+
+  //*********************************
   int itemCount = 3;
   @override
   Widget build(BuildContext context) {

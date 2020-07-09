@@ -7,9 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'constants.dart';
 
 class ImagePickerCropper extends StatefulWidget {
-  final String imageGroupName;
 
-  ImagePickerCropper({this.imageGroupName});
+  ImagePickerCropper();
 
   @override
   _ImagePickerCropperState createState() => _ImagePickerCropperState();
@@ -123,6 +122,12 @@ class _ImagePickerCropperState extends State<ImagePickerCropper> {
                   SizedBox(
                     height: consMedPadH,
                   ),
+                  RaisedButton(
+                    child: Text("Upload"),
+                    onPressed: () {
+                      Navigator.pop(context, _imageFile);
+                    },
+                  )
                 ],
               ],
             ),

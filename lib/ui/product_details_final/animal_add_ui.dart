@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:farming_project/routes/routes.gr.dart';
 import 'package:farming_project/shared/box_shadows.dart';
 import 'package:farming_project/shared/colors.dart';
 import 'package:farming_project/shared/constants.dart';
+import 'package:farming_project/shared/image_picker_cropper.dart';
 import 'package:farming_project/shared/size_config.dart';
 import 'package:farming_project/shared/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,7 @@ class _AddAnimalUIState extends State<AddAnimalUI> {
   //*************************************************
   var globalKey = GlobalKey<ScaffoldState>();
   int groupValue = 1;
+  var imgProfile;
   List<String> categoriesName = [
     "Cow",
     "Buffalo",
@@ -72,6 +76,8 @@ class _AddAnimalUIState extends State<AddAnimalUI> {
                         ),
                       ),
                       onTap: () {
+                        ExtendedNavigator.of(context)
+                            .pushNamed(Routes.imagePickerCropper);
                         //todo
                       },
                     ),
@@ -485,6 +491,7 @@ class _AddAnimalUIState extends State<AddAnimalUI> {
         ),
       ),
     );
+
   }
 
   //**************step-02: get location**************
@@ -517,7 +524,27 @@ class _AddAnimalUIState extends State<AddAnimalUI> {
       print(e);
     }
   }
+
+
 //*************************************************
+//upload image
+
+  void uploadImage() async {
+    final result = await Navigator.push(
+      context,
+      // Create the SelectionScreen in the next step.
+      MaterialPageRoute(
+        builder: (context) => ImagePickerCropper(),
+      ),
+    );
+
+    if (result != null && result != "NO") {
+      setState(() {
+        imgProfile = result;
+      });
+    }
+  }
 }
 
 //**************** BottomSheet*******************888
+
